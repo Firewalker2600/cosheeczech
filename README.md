@@ -156,19 +156,3 @@ interface GeocoderInterface {
 Disable geocoding (offline) with `GEOCODER=noop` in `docker-compose.yml` or the
 environment. The `User-Agent` header is configurable via `GEOCODER_USER_AGENT`
 (Nominatim's usage policy requires one).
-
-## Commentary
-
-**What I focused on, and why.** Correctness of the money handling first (the float bug is
-the one that silently corrupts data), then a clean separation between a framework-free
-domain core and a thin HTTP adapter — so the business logic is testable without
-bootstrapping a web server. Type safety everywhere (`final readonly` value objects,
-backed enums, PHPStan level 9), because the assignment is explicitly about PHP 8.4 and
-"bug-free" code. API-first: the contract tests were written against the OpenAPI spec and
-the missing 404s added to the spec before implementing.
-
-**What I'd do next, given more time.** (1) Add a `ProductCatalog` service + product
-management endpoints (the catalog is currently seed-only); (2) optimistic locking /
-version column on carts; (3) a `CartId`/`OrderId` value object instead of raw strings;
-(4) OpenAPI contract testing (e.g. validate responses against the schema in CI); (5)
-ramsey/uuid instead of the hand-rolled v4 generator if the extra dependency is acceptable.
