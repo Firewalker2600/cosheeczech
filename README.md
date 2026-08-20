@@ -140,8 +140,7 @@ Design decisions worth calling out:
 
 ### External API — address geocoding
 
-The assignment suggested an external API "connected to the domain" (address validation,
-geo-location, packing, currency). The `Order.geo_location` field is the natural hook, so
+The `Order.geo_location` field is the natural hook, so
 orders geocode their shipping address via **Nominatim** (OpenStreetMap, free, no key):
 
 ```php
@@ -157,28 +156,6 @@ interface GeocoderInterface {
 Disable geocoding (offline) with `GEOCODER=noop` in `docker-compose.yml` or the
 environment. The `User-Agent` header is configurable via `GEOCODER_USER_AGENT`
 (Nominatim's usage policy requires one).
-
----
-
-## Legacy code refactor
-
-`legacy.php`'s `OrderManager` was refactored into clean, type-safe PHP 8.4:
-
-| Legacy                     | Now                                              |
-|----------------------------|--------------------------------------------------|
-| `OrderManager`             | `OrderService` (stateless, DI)                    |
-| `findBySku()` + `products.json` | `ProductRepositoryInterface` + SQLite         |
-| `orders.json` append       | `OrderRepositoryInterface` + transactional SQLite |
-| `CustomerRepository`       | dropped — new spec has no customer concept (pattern reused by repositories) |
-| `Mailer`                   | dropped — not in the spec (no email on orders)       |
-| `stdClass` / public props  | `final readonly` value objects                   |
-| `list()` as array literal  | `[]` (it was a destructuring construct, not a literal) |
-| silent `continue` on missing product | `ProductNotFoundException` → 404        |
-| `float` money accumulation | `Money` (integer minor units)                    |
-| `date('Y-m-d H:i:s')`      | `DateTimeImmutable` + RFC3339                    |
-| hardcoded `new` dependencies | constructor injection                          |
-
----
 
 ## Commentary
 
