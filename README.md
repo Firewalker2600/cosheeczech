@@ -1,14 +1,13 @@
 # CosheeCzech — Mini E-commerce Cart & Order API
 
-A small, production-shaped HTTP API for managing shopping carts and orders, built as a
-refactor of a legacy `OrderManager` plus a greenfield implementation of the `ec-api.yml`
-OpenAPI specification.
+A small HTTP API for managing shopping carts and orders, implemented from the
+`ec-api.yml` OpenAPI specification.
 
-* **PHP 8.4** (strict types, readonly value objects, backed enums, `#[Override]`)
+* **PHP 8.4** (strict types, readonly value objects)
 * **Slim 4** (PSR-7 / PSR-15) + **PHP-DI** (PSR-11) — framework-agnostic domain core
 * **SQLite** persistence (PDO), transactional writes
 * **Address geocoding** via the free OpenStreetMap Nominatim API (external API integration)
-* **TDD** (56 tests), **PHPStan level 9** (zero errors)
+* **TDD** (60 tests), **PHPStan level 9** (zero errors)
 
 ---
 
@@ -100,7 +99,7 @@ original `ec-api.yml` was updated in `spec/ec-api.yml`.
 ## Development
 
 ```bash
-# Tests (56 tests, unit + API integration against in-memory SQLite)
+# Tests (60 tests, unit + API integration against in-memory SQLite)
 docker compose run --rm app php vendor/bin/phpunit
 
 # Static analysis (level 9, zero errors)
