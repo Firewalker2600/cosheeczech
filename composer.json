@@ -1,0 +1,47 @@
+{
+    "name": "firewalker/cosheeczech",
+    "description": "CosheeCzech — mini e-commerce Cart & Order API (interview tech task), PHP 8.4, Slim 4, SQLite, TDD, PHPStan",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.4",
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "guzzlehttp/guzzle": "^7.9",
+        "monolog/monolog": "^3.0",
+        "php-di/php-di": "^7.0",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.1",
+        "slim/psr7": "^1.7",
+        "slim/slim": "^4.14"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.4.0"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:unit": "phpunit --testsuite unit",
+        "test:integration": "phpunit --testsuite integration",
+        "analyse": "phpstan analyse --no-progress",
+        "serve": "php -S 0.0.0.0:8000 -t public"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

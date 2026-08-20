@@ -1,0 +1,9 @@
+/vendor/
+/.phpunit.cache/
+/.phpstan/
+/.idea/
+/data/*.sqlite
+/data/*.sqlite-*
+/data/*.log
+/data/*.json
+.DS_Store

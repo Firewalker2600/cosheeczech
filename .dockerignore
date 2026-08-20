@@ -1,0 +1,11 @@
+.git
+.gitignore
+vendor
+.phpunit.cache
+.phpstan
+data
+tests
+docs
+Dockerfile
+docker-compose.yml
+*.md
